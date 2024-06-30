@@ -1,0 +1,12 @@
+﻿<Window x:Class="ex_002_CommandesMoteurBatch.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="167.321" Width="142.572" Loaded="Window_Loaded_1" Closing="Window_Closing_1">
+    <StackPanel Name="stackPanel" Margin="5">
+        <Button Margin="0,0,0,5" Content="Moteur A" Click="Button_Click_1" IsEnabled="{Binding PortAConnected}"/>
+        <Button Margin="0,0,0,5" Content="Moteur B" Click="Button_Click_1" IsEnabled="{Binding PortBConnected}"/>
+        <Button Margin="0,0,0,5" Content="Moteur C" Click="Button_Click_1" IsEnabled="{Binding PortCConnected}"/>
+        <Button Margin="0,0,0,5" Content="Moteur D" Click="Button_Click_1" IsEnabled="{Binding PortDConnected}"/>
+        <Button Content="Send Command" Click="Button_Click_2" IsEnabled="{Binding Connected}"/>
+    </StackPanel>
+</Window>

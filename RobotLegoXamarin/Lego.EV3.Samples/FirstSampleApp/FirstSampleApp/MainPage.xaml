@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FirstSampleApp"
+             x:Class="FirstSampleApp.MainPage"
+             xmlns:ev3="clr-namespace:Lego.EV3.UILib;assembly=Lego.EV3.UILib"
+             xmlns:localev3="clr-namespace:Lego.EV3.UILib">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ev3:InputPortToVisibilityConverter x:Key="inputPortToVisiblityConverter" />
+            <local:BoolToColorConverter x:Key="boolToColorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Margin="5">
+        <ev3:EV3RobotChooser SelectedDevice="{Binding SelectedDevice, Mode=OneWayToSource}"/>
+        <ScrollView>
+        <StackLayout Margin="5">
+                <Label Text="{Binding hi.X , StringFormat='{0:D5}'}" x:Name="XText"  />
+                <Label Text="{Binding hi.Y , StringFormat='{0:D5}'}" x:Name="YText" />
+                <Label Text="{Binding hi.Z , StringFormat='{0:D5}'}" x:Name="ZText" />
+                <Button Margin="0,0,0,5" Text="Moteur A" Clicked="ButtonMotorClick" IsEnabled="{Binding BrickManager.PortAConnected}"/>
+        <Button Margin="0,0,0,5" Text="Moteur B" Clicked="ButtonMotorClick" IsEnabled="{Binding BrickManager.PortBConnected}"/>
+        <Button Margin="0,0,0,5" Text="Moteur C" Clicked="ButtonMotorClick" IsEnabled="{Binding BrickManager.PortCConnected}"/>
+        <Button Margin="0,0,0,5" Text="Moteur D" Clicked="ButtonMotorClick" IsEnabled="{Binding BrickManager.PortDConnected}"/>
+            
+
+                <BoxView BackgroundColor="Gray" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
+        
+        <local:InputPortUC Type="{Binding BrickManager.InputPort1.Type}" SIValue="{Binding BrickManager.InputPort1.SIValue}"  HorizontalOptions="Center" IsVisible="{Binding BrickManager.InputPort1, Converter={StaticResource inputPortToVisiblityConverter}}"/>
+        <local:InputPortUC Type="{Binding BrickManager.InputPort2.Type}" SIValue="{Binding BrickManager.InputPort2.SIValue}"  HorizontalOptions="Center" IsVisible="{Binding BrickManager.InputPort2, Converter={StaticResource inputPortToVisiblityConverter}}"/>
+        <local:InputPortUC Type="{Binding BrickManager.InputPort3.Type}" SIValue="{Binding BrickManager.InputPort3.SIValue}"  HorizontalOptions="Center" IsVisible="{Binding BrickManager.InputPort3, Converter={StaticResource inputPortToVisiblityConverter}}"/>
+        <local:InputPortUC Type="{Binding BrickManager.InputPort4.Type}" SIValue="{Binding BrickManager.InputPort4.SIValue}"  HorizontalOptions="Center" IsVisible="{Binding BrickManager.InputPort4, Converter={StaticResource inputPortToVisiblityConverter}}"/>
+
+        <AbsoluteLayout>
+                    
+                    <BoxView AbsoluteLayout.LayoutFlags="None" AbsoluteLayout.LayoutBounds="100, 200, 50, 50" WidthRequest="50" HeightRequest="50" BackgroundColor="{Binding BrickManager.ButtonEnter, Converter={StaticResource boolToColorConverter}}"/>
+            <BoxView AbsoluteLayout.LayoutFlags="None" AbsoluteLayout.LayoutBounds="100, 150, 50, 50" WidthRequest="50" HeightRequest="50" BackgroundColor="{Binding BrickManager.ButtonUp, Converter={StaticResource boolToColorConverter}}"/>
+            <BoxView AbsoluteLayout.LayoutFlags="None" AbsoluteLayout.LayoutBounds="100, 250, 50, 50" WidthRequest="50" HeightRequest="50" BackgroundColor="{Binding BrickManager.ButtonDown, Converter={StaticResource boolToColorConverter}}"/>
+            <BoxView AbsoluteLayout.LayoutFlags="None" AbsoluteLayout.LayoutBounds="50, 200, 50, 50" WidthRequest="50" HeightRequest="50" BackgroundColor="{Binding BrickManager.ButtonLeft, Converter={StaticResource boolToColorConverter}}"/>
+            <BoxView AbsoluteLayout.LayoutFlags="None" AbsoluteLayout.LayoutBounds="150, 200, 50, 50" WidthRequest="50" HeightRequest="50" BackgroundColor="{Binding BrickManager.ButtonRight, Converter={StaticResource boolToColorConverter}}"/>
+        </AbsoluteLayout>
+        <Button Text="Sing !" Clicked="Handle_Clicked"/>
+
+
+
+
+                <Button Margin="0,0,0,5" Text="Connect Myo" Clicked="Button_Clicked" />
+                <Button Margin="0,0,0,5" Text="Forward" Clicked="ButtonForwardClick" />
+                <Button Margin="0,0,0,5" Text="Backwards" Clicked="ButtonBackwardClick" />
+                <Button Margin="0,0,0,5" Text="Left" Clicked="ButtonRotateLeftClick" />
+                <Button Margin="0,0,0,5" Text="Right" Clicked="ButtonRotateRightClick" />
+            </StackLayout>
+            </ScrollView>
+    </StackLayout>
+</ContentPage>

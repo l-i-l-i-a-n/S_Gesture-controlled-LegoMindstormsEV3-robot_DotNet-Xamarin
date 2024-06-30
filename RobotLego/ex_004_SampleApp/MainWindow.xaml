@@ -1,0 +1,47 @@
+﻿<Window x:Class="ex_004_SampleApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ex_004_SampleApp"
+        xmlns:ev3="clr-namespace:AsyncEV3MotorCommandsLib;assembly=AsyncEV3MotorCommandsLib"
+        mc:Ignorable="d" Closing="root_Closing" Loaded="root_Loaded"
+        Title="MainWindow" Height="350" Width="525" x:Name="root">
+    
+    <Window.Resources>
+        <ev3:InputPortToVisibilityConverter x:Key="inputPortToVisiblityConverter"/>
+        <local:BoolToColorConverter x:Key="boolToColorConverter"/>
+        <DataTemplate x:Key="inputPortTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding Type}" HorizontalAlignment="Right" Margin="0,0,5,0"/>
+                <TextBlock Text="{Binding SIValue}" HorizontalAlignment="Left" Grid.Column="1" Margin="5,0,0,0"/>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    
+        <StackPanel Margin="5">
+            <ev3:EV3RobotChooser SelectedDevice="{Binding SelectedDevice, ElementName=root, Mode=TwoWay}"/>
+            <Button Margin="0,0,0,5" Content="Moteur A" Click="Button_Click_1" IsEnabled="{Binding PortAConnected}"/>
+            <Button Margin="0,0,0,5" Content="Moteur B" Click="Button_Click_1" IsEnabled="{Binding PortBConnected}"/>
+            <Button Margin="0,0,0,5" Content="Moteur C" Click="Button_Click_1" IsEnabled="{Binding PortCConnected}"/>
+            <Button Content="Moteur D" Click="Button_Click_1" IsEnabled="{Binding PortDConnected}"/>
+            <Rectangle Width="500" HorizontalAlignment="Center" Height="1" Fill="Black" Margin="10"/>
+            <ContentControl Content="{Binding InputPort1}" ContentTemplate="{StaticResource inputPortTemplate}" HorizontalAlignment="Center" Visibility="{Binding InputPort1, Converter={StaticResource inputPortToVisiblityConverter}}"/>
+            <ContentControl Content="{Binding InputPort2}" ContentTemplate="{StaticResource inputPortTemplate}" HorizontalAlignment="Center" Visibility="{Binding InputPort2, Converter={StaticResource inputPortToVisiblityConverter}}"/>
+            <ContentControl Content="{Binding InputPort3}" ContentTemplate="{StaticResource inputPortTemplate}" HorizontalAlignment="Center" Visibility="{Binding InputPort3, Converter={StaticResource inputPortToVisiblityConverter}}"/>
+            <ContentControl Content="{Binding InputPort4}" ContentTemplate="{StaticResource inputPortTemplate}" HorizontalAlignment="Center" Visibility="{Binding InputPort4, Converter={StaticResource inputPortToVisiblityConverter}}"/>
+
+            <Canvas>
+                <Rectangle Width="50" Height="50" Canvas.Left="0" Canvas.Top="0" Fill="{Binding ButtonBack, Converter={StaticResource boolToColorConverter}}"/>
+                <Rectangle Width="50" Height="50" Canvas.Left="100" Canvas.Top="200" Fill="{Binding ButtonEnter, Converter={StaticResource boolToColorConverter}}"/>
+                <Rectangle Width="50" Height="50" Canvas.Left="100" Canvas.Top="150" Fill="{Binding ButtonUp, Converter={StaticResource boolToColorConverter}}"/>
+                <Rectangle Width="50" Height="50" Canvas.Left="100" Canvas.Top="250" Fill="{Binding ButtonDown, Converter={StaticResource boolToColorConverter}}"/>
+                <Rectangle Width="50" Height="50" Canvas.Left="50" Canvas.Top="200" Fill="{Binding ButtonLeft, Converter={StaticResource boolToColorConverter}}"/>
+                <Rectangle Width="50" Height="50" Canvas.Left="150" Canvas.Top="200" Fill="{Binding ButtonRight, Converter={StaticResource boolToColorConverter}}"/>
+            </Canvas>
+        </StackPanel>
+</Window>

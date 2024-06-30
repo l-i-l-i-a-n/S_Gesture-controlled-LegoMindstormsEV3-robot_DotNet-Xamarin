@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FirstSampleApp.InputPortUC" x:Name="root">
+  <ContentView.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Text="{Binding Type, Source={x:Reference root}}" HorizontalOptions="End" Margin="0,0,5,0"/>
+            <Label Text="{Binding SIValue, Source={x:Reference root}}" HorizontalOptions="Start" Grid.Column="1" Margin="0,0,5,0"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

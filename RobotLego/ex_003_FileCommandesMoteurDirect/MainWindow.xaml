@@ -1,0 +1,114 @@
+﻿<Window x:Class="ex_003_FileCommandesMoteurDirect.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="438.142" Width="562.724" Loaded="Window_Loaded_1" Closing="Window_Closing_1">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="0,0,0, 5"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Name="stackPanel" Margin="5" Grid.ColumnSpan="3">
+            <Button Content="Moteur A" Click="Button_Click_1" IsEnabled="{Binding PortAConnected}"/>
+            <Button Content="Moteur B" Click="Button_Click_1" IsEnabled="{Binding PortBConnected}"/>
+            <Button Content="Moteur C" Click="Button_Click_1" IsEnabled="{Binding PortCConnected}"/>
+            <Button Content="Moteur D" Click="Button_Click_1" IsEnabled="{Binding PortDConnected}"/>
+        </StackPanel>
+        <Separator Margin="0,0,0,5" Height="2" Grid.Row="1" Grid.ColumnSpan="3"/>
+        <StackPanel Grid.Row="2" Margin="5,0">
+            <Button Click="Methode1" IsEnabled="{Binding Connected}">
+                <Button.Content>
+                    <TextBlock TextAlignment="Center">
+                        <Run Text="Send Commands"/><LineBreak/>
+                        <Run Text="as a foreach"/><LineBreak/>
+                        <Run Text="of await"/><LineBreak/>
+                        <Run Text="DirectCommands"/>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button Click="Methode2" IsEnabled="{Binding Connected}">
+                <Button.Content>
+                    <TextBlock TextAlignment="Center">
+                        <Run Text="Send Commands"/><LineBreak/>
+                        <Run Text="as a foreach"/><LineBreak/>
+                        <Run Text="of await DirectCommands"/><LineBreak/>
+                        <Run Text="separated by DelayTasks"/>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button Click="Methode3" IsEnabled="{Binding Connected}">
+                <Button.Content>
+                    <TextBlock TextAlignment="Center">
+                        <Run Text="Send Commands"/><LineBreak/>
+                        <Run Text="as a foreach"/><LineBreak/>
+                        <Run Text="of await Task.WhenAll"/><LineBreak/>
+                        <Run Text="DirectCommands + DelayTasks"/>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button Click="Methode4" IsEnabled="{Binding Connected}">
+                <Button.Content>
+                    <TextBlock TextAlignment="Center">
+                        <Run Text="Send Commands"/><LineBreak/>
+                        <Run Text="as a foreach"/><LineBreak/>
+                        <Run Text="of await TaskCompletionSource"/><LineBreak/>
+                        <Run Text="encapsulating DirectCommands"/>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="2" Margin="5,0">
+            <Button Click="Methode5" IsEnabled="{Binding Connected}">
+                <Button.Content>
+                    <TextBlock TextAlignment="Center">
+                        <Run Text="Send Commands"/><LineBreak/>
+                        <Run Text="as a foreach"/><LineBreak/>
+                        <Run Text="of TaskCompletionSource"/><LineBreak/>
+                        <Run Text="encapsulating DirectCommands"/><LineBreak/>
+                        <Run Text="without using await"/>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button Click="Methode6" IsEnabled="{Binding Connected}">
+                <Button.Content>
+                    <TextBlock TextAlignment="Center">
+                        <Run Text="Send Commands"/><LineBreak/>
+                        <Run Text="as a foreach"/><LineBreak/>
+                        <Run Text="of TaskCompletionSource"/><LineBreak/>
+                        <Run Text="simulating BatchCommand"/>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button Click="Methode7" IsEnabled="{Binding Connected}">
+                <Button.Content>
+                    <TextBlock TextAlignment="Center">
+                        <Run Text="Send Commands with"/><LineBreak/>
+                        <Run Text="await TaskCompletionSource"/><LineBreak/>
+                        <Run Text="(BatchMotorCommandAsync)"/>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+            <Button Click="Methode8" IsEnabled="{Binding Connected}">
+                <Button.Content>
+                    <TextBlock TextAlignment="Center">
+                        <Run Text="One complex sample"/><LineBreak/>
+                        <Run Text="(B and C in batch,"/><LineBreak/>
+                        <Run Text="followed by A, then B,"/><LineBreak/>
+                        <Run Text="then B and C in batch)"/>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+        <ListBox Grid.Column="2" x:Name="listBoxCommandes" ItemsSource="{Binding Commandes}" Grid.Row="2" Margin="5,0"/>
+    </Grid>
+</Window>

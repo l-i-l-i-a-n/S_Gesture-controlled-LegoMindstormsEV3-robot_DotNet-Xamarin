@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lego.EV3.UILib.EV3RobotChooser" x:Name="chooserControl">
+  <ContentView.Content>
+        <Grid>
+            <!--Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="100"/>
+                <!--<RowDefinition Height="Auto"/>-->
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="Choose the robot to connect with :" VerticalOptions="Center" x:Name="test"/>
+            <Button Text="Start" Grid.Column="1" Margin="4" VerticalOptions="Center" Clicked="Start_Click"/>
+            <Button Text="Stop" Grid.Column="2" Margin="4" VerticalOptions="Center" Clicked="Stop_Click"/>
+            <ListView HorizontalOptions="StartAndExpand" ItemsSource="{Binding Devices, Mode=OneWay, Source={x:Reference chooserControl}}" Grid.ColumnSpan="3" Grid.Row="1" BackgroundColor="Tan"
+                SelectedItem="{Binding SelectedDevice, Mode=TwoWay, Source={x:Reference chooserControl}}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding Name}"/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

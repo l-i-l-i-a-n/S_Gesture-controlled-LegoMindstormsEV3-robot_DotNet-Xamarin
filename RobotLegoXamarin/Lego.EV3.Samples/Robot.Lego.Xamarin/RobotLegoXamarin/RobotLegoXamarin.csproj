@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MainPage.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Lego.EV3.Lib\AsyncEV3Lib\AsyncEV3Lib.csproj" />
+    <ProjectReference Include="..\..\..\Lego.EV3.UILib\Lego.EV3.UILib\Lego.EV3.UILib.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Images\ClubInfoRocks.rgf" />
+    <None Remove="Images\Tired middle.rgf" />
+    <None Remove="Sounds\Cat purr.rsf" />
+    <None Remove="Sounds\cheerful.rsf" />
+    <None Remove="Sounds\determined.rsf" />
+    <None Remove="Sounds\wilhelm_scream.rsf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+    <Folder Include="Sounds\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ClubInfoRocks.rgf" />
+    <EmbeddedResource Include="Images\Tired middle.rgf" />
+    <EmbeddedResource Include="Sounds\Cat purr.rsf" />
+    <EmbeddedResource Include="Sounds\cheerful.rsf" />
+    <EmbeddedResource Include="Sounds\determined.rsf" />
+    <EmbeddedResource Include="Sounds\wilhelm_scream.rsf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RobotLegoXamarin"
+             x:Class="RobotLegoXamarin.MainPage"
+             xmlns:ev3="clr-namespace:Lego.EV3.UILib;assembly=Lego.EV3.UILib"
+             >
+
+    <!--<ContentPage..Resources>
+        <ev3:InputPortToVisibilityConverter x:Key="inputPortToVisiblityConverter"/>
+    </ContentPage..Resources>-->
+    <StackLayout Margin="5">
+        <ev3:EV3RobotChooser SelectedDevice="{Binding SelectedDevice, Mode=OneWayToSource}"/>
+        <Button Margin="0,0,0,5" Text="DirectCommands" Clicked="DirectCommands_Click" IsEnabled="{Binding BrickManager.Connected}"/>
+        <Button Margin="0,0,0,5" Text="PlayTonesAndSounds" Clicked="PlayTonesAndSounds_Click" IsEnabled="{Binding BrickManager.Connected}"/>
+        <Button Margin="0,0,0,5" Text="TestMotors" Clicked="TestMotors_Click" IsEnabled="{Binding BrickManager.Connected}"/>
+        <Button Margin="0,0,0,5" Text="TestStartAndStopMotors" Clicked="TestStartAndStopMotors_Click" IsEnabled="{Binding BrickManager.Connected}"/>
+        <Button Text="TestDrawImages" Clicked="TestDrawImages_Click" IsEnabled="{Binding BrickManager.Connected}"/>
+
+    </StackLayout>
+
+</ContentPage>
